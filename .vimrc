@@ -12,11 +12,11 @@ set cursorline
 set colorcolumn=100
 
 "set statusline==========================================%m%r%h \ %f\ %=%-14.(%l,%c%V%)\ %P        
-colorscheme desert  
+colorscheme darkblue  
 
-"---------------------------------------------------------------------------------------------"
-"                                           PLUGIN                                            "
-"---------------------------------------------------------------------------------------------"
+"-----------------------"
+"       PLUGIN          "
+"-----------------------"
 
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -29,15 +29,9 @@ call plug#begin()
     Plug 'junegunn/fzf'
 call plug#end()
 
-"--------------------------------------------------------------------------------------------"
-"                                          NERDTREE                                             "
-"--------------------------------------------------------------------------------------------"
-
-" Keymaps
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+"-----------------------"
+"      NERDTREE         "
+"-----------------------"
 
 " Start NERDTree and leave the cursor in it.
 autocmd VimEnter * NERDTree
@@ -46,3 +40,15 @@ autocmd VimEnter * NERDTree
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
 
 let g:NERDTreeFileLines = 1
+
+"----------------------"
+"       MAPPING        "
+"----------------------"
+":let mapleader = "\"
+
+"nnoremap <C-t> :NERDTreeFocus<CR>
+"nnoremap <C-n> :NERDTree<CR>                        
+nnoremap <leader>] :NERDTreeToggle<CR>              " \+] mapped to Toggle NERDTree
+"nnoremap <C-f> :NERDTreeFind<CR>
+
+nnoremap <C-r> :source ~/.vimrc<CR>                 "Reload vim configuration

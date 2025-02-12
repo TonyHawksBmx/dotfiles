@@ -1,4 +1,5 @@
-#tmux
+#!/usr/bin/env bash
+
 #  Note that a variable may require special treatment
 #+ if it will be exported.
 
@@ -19,8 +20,8 @@ NC='\e[m'
 #The color range for background pallets is 40-47.
 #The color range for text colors is 30-37.
 
-#PCT="\`if [[ \$EUID -eq 0 ]]; then T='$LIGHTRED' ; else T='$LIGHTBLUE'; fi; 
-#echo \$T \`"
+PCT="\`if [[ \$EUID -eq 0 ]]; then T='$LIGHTRED' ; else T='$LIGHTBLUE'; fi; 
+echo \$T \`"
 
 #  For "literal" command substitution to be assigned to a variable,
 #+ use escapes and double quotes:
@@ -30,8 +31,8 @@ NC='\e[m'
 #+ and it will not change afterwards even if the user ID changes.
 
 
-#PS1="\n$GREEN[\w] \n$DARKGRAY($PCT\t$DARKGRAY)-($PCT\u$DARKGRAY)-($PCT\!
-#$DARKGRAY)$YELLOW-> $NC"
+PS1="\n$GREEN[\w] \n$DARKGRAY($PCT\t$DARKGRAY)-($PCT\u$DARKGRAY)-($PCT\!
+$DARKGRAY)$YELLOW-> $NC"
 
 #  Escape a variables whose value changes:
 #        if [[ \$EUID -eq 0 ]],
@@ -50,21 +51,17 @@ NC='\e[m'
 
 
 #  Variables PCT and PS1 can be merged into a new PS1 variable:
-
 #PS1="\`if [[ \$EUID -eq 0 ]]; then PCT='$LIGHTRED';
 #else PCT='$LIGHTBLUE'; fi; 
 #echo '\n$GREEN[\w] \n$DARKGRAY('\$PCT'\t$DARKGRAY)-\
 #('\$PCT'\u$DARKGRAY)-('\$PCT'\!$DARKGRAY)$YELLOW-> $NC'\`"
-
-# The trick is to use strong quoting for parts of old PS1 variable.
-
-
-unset PROMPT_COMMAND
-PS1 = '[\e[41;3;32m[\u@\h:\w\a\$]]'
+#The trick is to use strong quoting for parts of old PS1 variable.
 
 
-
-
+#unset PROMPT_COMMAND
+#unset PS0
+PS1="\\u@\\h:\\w\a\] $"
+#PS1="\[\033[m\]-\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\\n\[\033[35m\]\t: "
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach-session -t default || tmux new-session -s default
