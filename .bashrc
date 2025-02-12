@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
 
+# Bash Confguration File
+
 #  Note that a variable may require special treatment
 #+ if it will be exported.
-
-DARKGRAY='\e[1;30m'
-LIGHTRED='\e[1;31m'
-GREEN='\e[32m'
-YELLOW='\e[1;33m'
-LIGHTBLUE='\e[1;34m'
-NC='\e[m'
 
 #\e is a special character denoting the start of a color sequence
 #\u indicates the name of the user, followed by the '@' symbol
@@ -20,6 +15,13 @@ NC='\e[m'
 #The color range for background pallets is 40-47.
 #The color range for text colors is 30-37.
 
+DARKGRAY='\[\e[1;30m\]'
+LIGHTRED='\[\e[1;31m\]'
+GREEN='\[\e[32m\]'
+YELLOW='\[\e[1;33m\]'
+LIGHTBLUE='\[\e[1;34m\]'
+NC='\[\e[m\]'
+
 PCT="\`if [[ \$EUID -eq 0 ]]; then T='$LIGHTRED' ; else T='$LIGHTBLUE'; fi; 
 echo \$T \`"
 
@@ -30,9 +32,12 @@ echo \$T \`"
 #+ when the variable is exported/read from .bash_profile,
 #+ and it will not change afterwards even if the user ID changes.
 
+#PS1="\n$GREEN[\w] \n$DARKGRAY($PCT\t$DARKGRAY)-($PCT\u$DARKGRAY)-($PCT\!
+#$DARKGRAY)$YELLOW-> $NC"
+PS1="$LIGHTBLUE\\u@\\h:$LIGHTRED\\w$NC$ "
 
-PS1="\n$GREEN[\w] \n$DARKGRAY($PCT\t$DARKGRAY)-($PCT\u$DARKGRAY)-($PCT\!
-$DARKGRAY)$YELLOW-> $NC"
+#unset PROMPT_COMMAND
+#unset PS0
 
 #  Escape a variables whose value changes:
 #        if [[ \$EUID -eq 0 ]],
@@ -49,7 +54,6 @@ $DARKGRAY)$YELLOW-> $NC"
 #        T='$LIGHTRED',
 #  Otherwise, the semicolon will be interpreted as a command separator.
 
-
 #  Variables PCT and PS1 can be merged into a new PS1 variable:
 #PS1="\`if [[ \$EUID -eq 0 ]]; then PCT='$LIGHTRED';
 #else PCT='$LIGHTBLUE'; fi; 
@@ -58,11 +62,12 @@ $DARKGRAY)$YELLOW-> $NC"
 #The trick is to use strong quoting for parts of old PS1 variable.
 
 
-#unset PROMPT_COMMAND
-#unset PS0
-PS1="\\u@\\h:\\w\a\] $"
-#PS1="\[\033[m\]-\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\\n\[\033[35m\]\t: "
-
+# Launch Default Tmux Session on Terminal Launch
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach-session -t default || tmux new-session -s default
 fi
+
+
+export LS_COLORS="di=1;33:fi=0;37:ln=1:or=5;31:mi=41;37:ex=1;92:*.c=0;36:*.cpp=0;36:*.py=0;32"
+
+alias ls='ls --color=auto'
