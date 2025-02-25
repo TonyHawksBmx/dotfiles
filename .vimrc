@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!usr/bin/env bash
 "vimrc configuration file
 
 set tabstop=4       " Number of spaces that a <Tab> in the file counts for
@@ -12,12 +12,12 @@ set spell
 
 set number
 set cursorline
-set colorcolumn=120
+"set colorcolumn=120
 
-set foldmethod=indent
-set foldcolumn=1
-highlight Folded guifg=PeachPuff4
-highlight FoldColumn guibg=darkgrey guifg=white
+"set foldmethod=indent
+"set foldcolumn=1
+"highlight Folded guifg=PeachPuff4
+"highlight FoldColumn guibg=darkgrey guifg=white
 
 "set statusline=================%m%r%h \ %f\ %=%-14.(%l,%c%V%)\ %P
 colorscheme pablo 
@@ -143,8 +143,8 @@ nnoremap <silent> <F5> :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_
 let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml'] 
 
 " automatically open quickfix window when AsyncRun command is executed
-" set the quickfix window 6 lines height.
-let g:asyncrun_open = 6
+" set the quickfix window 10 lines height.
+let g:asyncrun_open = 10
 
 " ring the bell to notify you job finished
 let g:asyncrun_bell = 1
