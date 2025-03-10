@@ -9,8 +9,8 @@ set encoding=UTF-8
 syntax on
 set autoread
 set spell
-
 set number
+set relativenumber
 set cursorline
 "set colorcolumn=120
 
@@ -37,7 +37,13 @@ call plug#begin()
     Plug 'junegunn/fzf'
     Plug 'skywind3000/vim-quickui'
     Plug 'skywind3000/asyncrun.vim'
+    Plug 'mbbill/undotree'
 call plug#end()
+
+"----------------------"
+"      UNDOTREE        "
+"----------------------"
+nnoremap <F3> :UndotreeToggle<CR>
 
 "-----------------------"
 "      NERDTREE         "
@@ -151,3 +157,4 @@ let g:asyncrun_bell = 1
 
 " F10 to toggle quickfix window
 nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
+
