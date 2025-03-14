@@ -1,19 +1,29 @@
 #!usr/bin/env bash
 "vimrc configuration file
-
+set noruler
+set confirm
 set tabstop=4       " Number of spaces that a <Tab> in the file counts for
 set shiftwidth=4    " Number of spaces to use for each step of (auto)indent
 set expandtab       " Use spaces instead of tabs
-
+set autoindent
+set smartindent
+set expandtab
+set hls is
+set ic
+set laststatus=2
+set cmdheight=1
 set encoding=UTF-8
+
 syntax on
+
 set autoread
+set spelllang=en_us
 set spell
 set number
 set relativenumber
 set cursorline
 "set colorcolumn=120
-
+set wildmenu
 "set foldmethod=indent
 "set foldcolumn=1
 "highlight Folded guifg=PeachPuff4
@@ -21,7 +31,8 @@ set cursorline
 
 "set statusline=================%m%r%h \ %f\ %=%-14.(%l,%c%V%)\ %P
 colorscheme pablo 
-
+hi Normal guibg=NONE ctermbg=NONE
+set background=dark
 "-----------------------"
 "       PLUGIN          "
 "-----------------------"
@@ -33,12 +44,29 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin()
+    Plug 'vim-airline/vim-airline'
     Plug 'preservim/nerdtree'
     Plug 'junegunn/fzf'
     Plug 'skywind3000/vim-quickui'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'mbbill/undotree'
-call plug#end()
+    Plug 'godlygeek/tabular'
+    Plug 'preservim/vim-markdown'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    Plug 'junegunn/limelight.vim'
+    Plug 'junegunn/goyo.vim'
+    Plug 'airblade/vim-gitgutter'
+    call plug#end()
+
+
+
+
+
+"======================"
+"      Markdown
+"======================"
+let g:vim_markdown_folding_disabled = 1
+
 
 "----------------------"
 "      UNDOTREE        "
@@ -158,3 +186,26 @@ let g:asyncrun_bell = 1
 " F10 to toggle quickfix window
 nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
 
+
+
+" -------------------------
+" junegunn/limelight.vim
+" -------------------------
+let g:limelight_conceal_ctermfg=244
+
+" ------------------------------
+" iamcco/markdown-preview.nvim
+" ------------------------------
+let g:mkdp_auto_close=0
+let g:mkdp_refresh_slow=1
+let g:mkdp_markdown_css='./github-markdown.css'
+
+"----------------------------
+"          AIRLINE
+"----------------------------
+":let g:airline_statusline_ontop=1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
