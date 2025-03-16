@@ -51,11 +51,11 @@ call plug#begin()
     Plug 'skywind3000/asyncrun.vim'
     Plug 'mbbill/undotree'
     Plug 'godlygeek/tabular'
-    Plug 'preservim/vim-markdown'
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    "Plug 'preservim/vim-markdown'
+    "Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}"
     Plug 'junegunn/limelight.vim'
     Plug 'junegunn/goyo.vim'
-    Plug 'airblade/vim-gitgutter'
+    "Plug 'airblade/vim-gitgutter'"
     call plug#end()
 
 
