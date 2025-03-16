@@ -71,6 +71,8 @@ fi
 export LS_COLORS="di=1;33:fi=0;37:ln=1:or=5;31:mi=41;37:ex=1;92:*.c=0;36:*.cpp=0;36:*.py=0;32"
 
 alias ls='ls --color=auto --group-directories-first -v'
+alias vim='neovim'
+alias emacs ='emacs -nw'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

@@ -13,9 +13,8 @@ set ic
 set laststatus=2
 set cmdheight=1
 set encoding=UTF-8
-
+set noshowmode
 syntax on
-
 set autoread
 set spelllang=en_us
 set spell
